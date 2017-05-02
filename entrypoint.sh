@@ -41,4 +41,11 @@ do
 done
 
 export LD_LIBRARY_PATH=".:$LD_LIBRARY_PATH"
-exec /tini -- ./ts3server $@
+
+if [ ! -f ts3server.ini ]; 
+  then
+    exec /tini -- ./ts3server inifile=ts3server.ini $@
+  else
+    exec /tini -- ./ts3server $@
+fi
+#exec /tini -- ./ts3server $@
